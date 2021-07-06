@@ -2,21 +2,21 @@ package main
 
 import (
 	"github.com/slashpai/voter-app/pkg/redis"
+	"html/template"
 	"log"
 	"net/http"
-	"html/template"
 )
 
 type Result struct {
-	DogVote int
-	CatVote int
+	DogVote     int
+	CatVote     int
 	NeutralVote int
-	Success bool
+	Success     bool
 }
 
 func main() {
-	indexTmpl := template.Must(template.ParseFiles("../../views/index.html"))
-	resultTmpl := template.Must(template.ParseFiles("../../views/results.html"))
+	indexTmpl := template.Must(template.ParseFiles("views/index.html"))
+	resultTmpl := template.Must(template.ParseFiles("views/results.html"))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Print("Starting request")
@@ -45,13 +45,13 @@ func main() {
 		log.Print("Vote Results")
 		res := redis.VoteResult()
 		details := Result{
-			DogVote: res["dog"],
-			CatVote: res["cat"],
+			DogVote:     res["dog"],
+			CatVote:     res["cat"],
 			NeutralVote: res["neutral"],
-			Success: true,
+			Success:     true,
 		}
 		log.Print("details", details)
-		resultTmpl.Execute(w,details)
+		resultTmpl.Execute(w, details)
 	})
 
 	log.Print("Application is available at http://localhost:8080")
