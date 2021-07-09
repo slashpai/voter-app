@@ -1,5 +1,9 @@
 # voter-app
 
+[![build](https://github.com/slashpai/voter-app/workflows/build/badge.svg)](https://github.com/slashpai/voter-app/actions?query=workflow%3Abuild)
+[![go lint](https://github.com/slashpai/voter-app/workflows/go-lint/badge.svg)](https://github.com/slashpai/voter-app/actions?query=workflow%3Ago-lint)
+[![markdown links](https://github.com/slashpai/voter-app/workflows/md-links/badge.svg)](https://github.com/slashpai/voter-app/actions?query=workflow%3Amd-links)
+
 This is a simplified version of [example-voting-app](https://github.com/dockersamples/example-voting-app) written in go.
 This app lets you vote any number of times. This is not an example for properly architected app but created to show how containers can be utilized for multi-tier applications.
 
