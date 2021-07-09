@@ -61,3 +61,19 @@ docker-compose up
 ```
 
 Go to [http://localhost:8090](http://localhost:8090) to access the application
+
+## Contributing
+
+* Fork the project on GitHub
+* Clone the project
+* Add changes (and tests if applicable)
+* Commit and push
+* Create a pull request
+
+## TODO
+
+* Add tests
+
+## License
+
+[Apache License](LICENSE)
