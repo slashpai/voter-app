@@ -10,9 +10,9 @@ import (
 )
 
 type dbDetails struct {
-	addr string
+	addr     string
 	password string
-	db int
+	db       int
 }
 
 var ctx = context.Background()
@@ -26,9 +26,9 @@ func NewDBDetails() *dbDetails {
 		panic(err)
 	}
 	return &dbDetails{
-		addr: os.Getenv("VOTER_REDIS_ADDR"),
+		addr:     os.Getenv("VOTER_REDIS_ADDR"),
 		password: os.Getenv("VOTER_REDIS_PASSWORD"),
-		db: rdb,
+		db:       rdb,
 	}
 }
 
@@ -68,12 +68,12 @@ func VoteNeutral() {
 	IncrementCount(rdb, "neutral")
 }
 
-func VoteResult() map[string]int{
+func VoteResult() map[string]int {
 	rdb := rdbDetails.RDBConnection()
-	results := map[string]int{"dog": 0, "cat": 0, "neutral" : 0}
-	for key, _ := range results {
+	results := map[string]int{"dog": 0, "cat": 0, "neutral": 0}
+	for key := range results {
 		votes, err := rdb.Get(ctx, key).Result()
-		results[key],_ = strconv.Atoi(votes)
+		results[key], _ = strconv.Atoi(votes)
 		log.Print(key, " ", votes)
 		if err != nil {
 			log.Print(err)
