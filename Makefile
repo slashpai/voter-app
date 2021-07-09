@@ -3,3 +3,6 @@ ARCH ?= $(shell go env GOARCH)
 
 build-local:
 	GOOS=$(OS) GOARCH=$(ARCH) CGO_ENABLED=0 go build -o /go/bin/voter-app
+
+go-fmt:
+	gofmt -s -w .
