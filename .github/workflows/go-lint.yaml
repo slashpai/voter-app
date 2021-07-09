@@ -1,0 +1,17 @@
+name: go-lint
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+jobs:
+  check-golang:
+    runs-on: ubuntu-latest
+    name: Golang linter
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.40.1
+          args: --timeout 10m0s

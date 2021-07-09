@@ -1,0 +1,22 @@
+name: build
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+env:
+  golang-version: '1.16'
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+    name: Build voter-app binary
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: ${{ env.golang-version }}
+    - run: make build-local
