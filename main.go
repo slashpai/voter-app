@@ -21,7 +21,10 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Print("Starting request")
 		if r.Method != http.MethodPost {
-			indexTmpl.Execute(w, nil)
+			err := indexTmpl.Execute(w, nil)
+			if err != nil {
+				log.Fatal(err)
+			}
 			return
 		}
 	})
@@ -51,9 +54,16 @@ func main() {
 			Success:     true,
 		}
 		log.Print("details", details)
-		resultTmpl.Execute(w, details)
+		err := resultTmpl.Execute(w, details)
+		if err != nil {
+			log.Fatal(err)
+		}
 	})
 
 	log.Print("Application is available at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
