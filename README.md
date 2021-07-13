@@ -48,9 +48,10 @@ docker build . -t voter-app:$DATE
 
 ### Run as container
 
-Example shown below with both redis and voter app running as container. Note `--link` option where redis container address is specified.
+Example shown below with both redis and voter app running as container. Note `--link` option where redis container address specified.
+
 ```go
-docker run -p 8090:8080 --env VOTER_REDIS_ADDR="redis_voter:6379" --link redis_voter --env VOTER_REDIS_PASSWORD="" --env VOTER_REDIS_DB=0 voter-app:$DATE
+docker run -p 8080:8080 --env VOTER_REDIS_ADDR="redis_voter:6379" --link redis_voter --env VOTER_REDIS_PASSWORD="" --env VOTER_REDIS_DB=0 voter-app:$DATE
 ```
 
 Go to [http://localhost:8080](http://localhost:8080) to access the application
