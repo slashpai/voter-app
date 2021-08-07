@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: voter-app
+  name: voter-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voter-app
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: voter-app
+    spec:
+      containers:
+        - name: voter-app
+          image: voterapp:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: VOTER_REDIS_ADDR
+              value: "redis:6379"
+            - name: VOTER_REDIS_PASSWORD
+              value: ''
+            - name: VOTER_REDIS_DB
+              value: "0"
+
